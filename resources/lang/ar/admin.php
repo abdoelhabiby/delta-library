@@ -99,9 +99,20 @@ return [
     "search_for" => "ابحث عن ...",
     "logout" => "تسجيل الخروج",
     "students" => "ألطلاب",
-    "student" => "ألطالب",
+    "student" => "طالب",
     "show" => "عرض",
-
+    "employee" => "موظف",
+    "search" => "بحث",
+    "entries" => "إدخالات",
+    "not_have" => "لا يوجد",
+    "full_name" => "ألاسم كامل",
+    "student_id" => "id ألطالب",
+    "level" => "الفرقه",
+    "choose_level" => "اختر الفرقه",
+    "required_level" => "رقم الفرقه مطلوب",
+    "required_level_in" => "رقم الفرقه غير موجود",
+    "reservation" => "الحجز",
+     "public" => "عام"
 
 
 

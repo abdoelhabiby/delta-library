@@ -31,15 +31,7 @@
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-header">
-                                    @include('admin.includes.forms.search',["action" => route("admin.categories.index")])
 
-                                     @if(admin()->hasPermissionTo("create_categories"))
-
-                                      <a href="{{route("admin.categories.create")}}"
-                                                 class="btn btn-outline-primary btn-min-width box-shadow-3 mr-1 ml-3 mb-1">
-                                           {{__("admin.create")}}
-                                        </a>
-                                     @endif
                                     <a class="heading-elements-toggle"><i
                                             class="la la-ellipsis-v font-medium-3"></i></a>
                                     <div class="heading-elements">
@@ -59,68 +51,68 @@
                                     <div class="card-body card-dashboard">
                                        @if($categories && $categories->count() > 0)
 
-                                        <table
-                                            class="table display nowrap table-striped table-bordered ">
-                                            <thead>
-                                            <tr>
-                                                <th>{{__("admin.name")}}</th>
-                                                <th>{{__("admin.active")}}</th>
-                                                <th>{{__("admin.action")}}</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
+                                        <div class="table-responsive">
+                <table class="table table-bordered testdataTable" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                       <th>{{__("admin.name")}}</th>
+                       <th>{{__("admin.active")}}</th>
+                        <th>{{__("admin.action")}}</th>
+                    </tr>
+                  </thead>
 
-                                            @foreach($categories as $category)
+                  <tbody>
 
-                                                    <tr>
-                                                        <td>{{$category->name}}</td>
-                                                        <td>
-                                                            {{$category->getCaseActive()}}
-                                                        </td>
-                                                        <td>
-                                                            <div class="btn-group" role="group"
-                                                                 aria-label="Basic example">
-                                                                @if(admin()->hasPermissionTo("edit_categories"))
+                   @foreach($categories as $category)
 
-                                                                <a href="{{route("admin.categories.edit",$category->id)}}"
-                                                                   class="btn btn-outline-primary btn-min-width box-shadow-3 mr-1 mb-1">
-                                                                   {{__("admin.edit")}}
-                                                                </a>
-                                                                @else
-                                                                   <button type="button"
-                                                                        class="btn btn-outline-primary btn-min-width box-shadow-3 mr-1 mb-1 disabled"
-                                                                        >
-                                                                    {{__("admin.edit")}}
-                                                                  </button>
-                                                                @endif
-                                                                @if(admin()->hasPermissionTo("delete_categories"))
-                                                                <button type="button"
-                                                                        id="button_delete"
-                                                                        data-action="{{route("admin.categories.destroy",$category->id)}}"
-                                                                        data-name="{{$category->name}}"
-                                                                        class="btn btn-outline-danger btn-min-width box-shadow-3 mr-1 mb-1"
-                                                                        >
-                                                                    {{__("admin.delete")}}
-                                                                </button>
-                                                                @else
-                                                                  <button type="button"
-                                                                        class="btn btn-outline-danger btn-min-width box-shadow-3 mr-1 mb-1 disabled"
-                                                                        >
-                                                                    {{__("admin.delete")}}
-                                                                  </button>
-                                                                @endif
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                            @endforeach
+                        <tr>
+                            <td>{{$category->name}}</td>
+                            <td>
+                                {{$category->getCaseActive()}}
+                            </td>
+                            <td>
+                                <div class="btn-group" role="group"
+                                        aria-label="Basic example">
+                                    @if(admin()->hasPermissionTo("edit_categories"))
 
-
-
+                                    <a href="{{route("admin.categories.edit",$category->id)}}"
+                                        class="btn btn-outline-primary btn-min-width box-shadow-3 mr-1 mb-1">
+                                        {{__("admin.edit")}}
+                                    </a>
+                                    @else
+                                        <button type="button"
+                                            class="btn btn-outline-primary btn-min-width box-shadow-3 mr-1 mb-1 disabled"
+                                            >
+                                        {{__("admin.edit")}}
+                                        </button>
+                                    @endif
+                                    @if(admin()->hasPermissionTo("delete_categories"))
+                                    <button type="button"
+                                            id="button_delete"
+                                            data-action="{{route("admin.categories.destroy",$category->id)}}"
+                                            data-name="{{$category->name}}"
+                                            class="btn btn-outline-danger btn-min-width box-shadow-3 mr-1 mb-1"
+                                            >
+                                        {{__("admin.delete")}}
+                                    </button>
+                                    @else
+                                        <button type="button"
+                                            class="btn btn-outline-danger btn-min-width box-shadow-3 mr-1 mb-1 disabled"
+                                            >
+                                        {{__("admin.delete")}}
+                                        </button>
+                                    @endif
+                                </div>
+                            </td>
+                        </tr>
+                @endforeach
 
 
+                  </tbody>
+                </table>
+              </div>
 
-                                            </tbody>
-                                        </table>
+
                                            @else
                                               <div class="text-center h4">{{__("admin.not found data")}}</div>
                                             @endif
@@ -132,11 +124,11 @@
                 </section>
             </div>
         </div>
-            <div class="d-flex justify-content-center mt-5">
+            {{-- <div class="d-flex justify-content-center mt-5">
 
               {{ $categories->appends(request()->query())->links() }}
 
-          </div>
+          </div> --}}
     </div>
 
 

@@ -25,13 +25,13 @@ class CategoryController extends Controller
      */
     public function index(Request $request)
     {
-        if ($request->has('search')) {
-            $categories = Category::where("name", "like", "%" . $request->search . "%")
-                ->paginate(PAGINATE_COUNT);
-            return view("admin.categories.index", compact('categories'));
-        }
+        // if ($request->has('search')) {
+        //     $categories = Category::where("name", "like", "%" . $request->search . "%")
+        //         ->paginate(PAGINATE_COUNT);
+        //     return view("admin.categories.index", compact('categories'));
+        // }
 
-        $categories = Category::paginate(PAGINATE_COUNT);
+        $categories = Category::get();
 
         return view("admin.categories.index",compact('categories'));
     }

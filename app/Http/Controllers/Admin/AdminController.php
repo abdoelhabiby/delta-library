@@ -26,7 +26,7 @@ class AdminController extends Controller
     public function index(Request $request)
     {
         if($request->has('search')){
-           $admins = Admin::where("name","like","%". $request->search . "%")
+           $admins = Admin::role("admin")->where("name","like","%". $request->search . "%")
                             ->orWhere("email", "like", "%" . $request->search . "%")->paginate(PAGINATE_COUNT);
            return view("admin.admins.index", compact("admins"));
 
@@ -141,7 +141,7 @@ class AdminController extends Controller
                 $path = imageUpload($request->photo, "admins");
                 $validated['photo'] = $path;
 
-                if($admin->photo != "images/admins/default.png"){
+                if($admin->photo != "images/user_default.png"){
                     deleteFile($admin->photo);
                 }
             }
@@ -158,11 +158,10 @@ class AdminController extends Controller
                 $admin->syncPermissions($request->permissions);
             }else{
                 $permissions = $admin->getDirectPermissions()->pluck('name');
-                if($permissions->count() > 0){
-                    foreach ($permissions as  $permission) {
-                        $admin->revokePermissionTo($permission);
 
-                    }
+                if($permissions->count() > 0){
+
+                    $admin->revokePermissionTo($permissions->toArray());
                 }
             }
 

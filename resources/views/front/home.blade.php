@@ -19,7 +19,10 @@
                                 </h1>
                                 <p>لـقد قمنـا بانشــاء هـذا الموقـع لاثــراء مــحـتـوي الـقــراء وللاحتفاظ بالمراجع وتحويل وتقدم المحتوي باستخدام التكنولوجيا لمستقبل افضل ان شاء الله ونتمني لكم تجربة مفيدة وسعيدة ولذيذة واحلا مسا..</p>
                                 <button class="book-now">احجز الان</button>
-                                <button class="login">تسجيل الدخول</button>
+                                @if(!student())
+                                <a href ='{{route('login')}}' class="login">تسجيل الدخول</a>
+
+                                @endif
                             </div>
                         </div>
                         <div class="col">
@@ -38,11 +41,14 @@
            @include('front.includes.about_us')
         <!-- End About Us -->
 
+
         <!-- Start books -->
         <section class="heading-section">
             <h2>قسم افضل الكتب</h2>
             <span>هتلاقي هني اهم واشهر الكتب اللي هتفيدك</span>
         </section>
+
+
         <article class="books-section">
             <div class="container">
                 <div class="row">

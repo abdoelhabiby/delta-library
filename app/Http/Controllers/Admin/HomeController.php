@@ -2,14 +2,17 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
+use App\Models\Admin\Admin;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class HomeController extends Controller
 {
 
     public function index(){
-       return view("admin.home");
+        $employees = Admin::role("employees")->orderBy("id", 'desc')->get();
+
+       return view("admin.home",compact('employees'));
 
 
     }

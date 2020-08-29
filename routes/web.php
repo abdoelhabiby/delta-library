@@ -15,16 +15,31 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('front.home');
-});
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
-
-Route::get("test",function(){
 
 
+
+
+Route::group(['namespace' => 'Front'], function () {
+
+    Route::get('/', 'HomeController@index')->name('home');
+    Route::get("/books","BookController@index")->name("books");
+    Route::get("/books/{book}", "BookController@show")->name('book.show');
+
+
+
+
+    Route::group(['middleware' => 'auth:web'], function() {
+
+         Route::get("logout" , "Auth\LoginController@logout")->name('logout');
+
+         Route::get("/books/{book}/reservation", "BookController@reservationView")->name('books.reservation');
+    });
+
+
+
+    Route::group(['middleware' => 'guest','namespace' => "Auth"],function(){
+        Route::get('login', "LoginController@login")->name('login');
+        Route::post('login', "LoginController@loginSubmit")->name('login.submit');
+    });
 
 });

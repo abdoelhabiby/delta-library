@@ -31,15 +31,8 @@
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-header">
-                                     @include('admin.includes.forms.search',["action" => route("admin.books.index")])
 
-                                     @if(admin()->hasPermissionTo("create_books"))
 
-                                      <a href="{{route("admin.books.create")}}"
-                                                 class="btn btn-outline-primary btn-min-width box-shadow-3 mr-1 ml-3 mb-1">
-                                           {{__("admin.create")}}
-                                        </a>
-                                     @endif
                                     <a class="heading-elements-toggle"><i
                                             class="la la-ellipsis-v font-medium-3"></i></a>
                                     <div class="heading-elements">
@@ -58,26 +51,27 @@
                                 <div class="card-content collapse show">
                                     <div class="card-body card-dashboard">
 
-                                            @if($books && $books->count() > 0)
+                                        @if($books && $books->count() > 0)
 
-                                        <table
-                                            class="table display nowrap table-striped table-bordered ">
-                                            <thead>
-                                            <tr>
-                                                <th>{{__("admin.name")}}</th>
-                                                <th>{{__("admin.category")}}</th>
-                                                <th>{{__("admin.photo")}}</th>
-                                                <th>{{__("admin.active")}}</th>
-                                                <th>{{__("admin.action")}}</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
+                                            <div class="table-responsive">
+                                                            <table class="table table-bordered testdataTable" id="dataTable" width="100%" cellspacing="0">
+                                                            <thead>
+                                                                <tr>
+                                                                 <th>{{__("admin.name")}}</th>
+                                                                 <th>{{__("admin.category")}}</th>
+                                                                 <th>{{__("admin.photo")}}</th>
+                                                                 <th>{{__("admin.active")}}</th>
+                                                                 <th>{{__("admin.action")}}</th>
+                                                                </tr>
+                                                            </thead>
 
-                                            @foreach($books as $book)
+                                                            <tbody>
+
+                                                         @foreach($books as $book)
 
                                                     <tr>
                                                         <td>{{$book->name}}</td>
-                                                        <td>{{$book->category ? $book->category->name : __("admin.undefined")}}</td>
+                                                        <td>{{$book->category ? $book->category->name : __("admin.public")}}</td>
                                                         <td>
 
                                                             <img src="{{asset($book->photo)}}" width="75px" height="75px">
@@ -124,12 +118,11 @@
                                             @endforeach
 
 
+                                                            </tbody>
+                                                            </table>
+                                                        </div>
 
 
-
-
-                                            </tbody>
-                                        </table>
                                          @else
                                               <div class="text-center h4">{{__("admin.not found data")}}</div>
                                         @endif
@@ -141,11 +134,11 @@
                 </section>
             </div>
         </div>
-            <div class="d-flex justify-content-center mt-5">
+            {{-- <div class="d-flex justify-content-center mt-5">
 
               {{ $books->appends(request()->query())->links() }}
 
-          </div>
+          </div> --}}
     </div>
 
 

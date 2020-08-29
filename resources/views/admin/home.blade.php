@@ -91,9 +91,88 @@
             </div>
         </div>
 
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered testdataTable" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th>{{__("admin.name")}}</th>
+                      <th>{{__("admin.email")}}</th>
+                      <th>{{__("admin.photo")}}</th>
+                      <th>{{__("admin.permissions")}}</th>
+                     <th>{{__("admin.action")}}</th>
+                    </tr>
+                  </thead>
+
+                  <tbody>
+
+                   @foreach($employees as $employee)
+
+                                                    <tr>
+                                                        <td>{{$employee->name}}</td>
+                                                        <td>{{$employee->email}}</td>
+                                                        <td>
+                                                            <img src="{{asset($employee->photo)}}" width="75px" height="75px">
+
+                                                        </td>
+                                                        <td>
+
+                                                               {{ $employee->getDirectPermissions()->pluck('name')->count() }}
+
+                                                        </td>
 
 
- 
+
+                                                        <td>
+                                                            <div class="btn-group" role="group"
+                                                                 aria-label="Basic example">
+
+                                                                <a href="{{route("admin.employees.show",$employee->id)}}"
+                                                                   class="btn btn-outline-info btn-min-width box-shadow-3 mr-1 mb-1">
+                                                                   {{__("admin.show")}}
+                                                                </a>
+
+                                                             @if(admin()->can('edit_employees'))
+                                                                <a href="{{route("admin.employees.edit",$employee->id)}}"
+                                                                   class="btn btn-outline-primary btn-min-width box-shadow-3 mr-1 mb-1">
+                                                                   {{__("admin.edit")}}
+                                                                </a>
+                                                             @else
+                                                             <button class="btn btn-outline-primary btn-min-width box-shadow-3 mr-1 mb-1 disabled">{{__("admin.edit")}}</button>
+                                                             @endif
+
+
+
+                                                            @if(admin()->can('delete_employees'))
+                                                                <button type="button"
+                                                                        id="button_delete"
+                                                                        data-action="{{route("admin.employees.destroy",$employee->id)}}"
+                                                                        data-name="{{$employee->name}}"
+                                                                        class="btn btn-outline-danger btn-min-width box-shadow-3 mr-1 mb-1"
+                                                                        >
+                                                                    {{__("admin.delete")}}
+                                                                </button>
+                                                             @else
+                                                             <button class="btn btn-outline-danger btn-min-width box-shadow-3 mr-1 mb-1 disabled">{{__("admin.delete")}}</button>
+                                                             @endif
+
+
+
+
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                            @endforeach
+
+
+                  </tbody>
+                </table>
+              </div>
+        </div>
+
+
+
+
     </div>
 
 

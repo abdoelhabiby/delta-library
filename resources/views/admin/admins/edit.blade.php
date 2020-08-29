@@ -150,7 +150,7 @@
                                                 <div class="form-group">
                                                     <strong class="mb-2">{{__('admin.permissions')}}</strong>
                                                   <?php
-                                                    $modules = ['students','employees','categories','books'];
+                                                    $modules = ['employees','students','categories','books'];
                                                     $permissions = ['create','read','edit','delete'];
                                                   ?>
 

@@ -30,13 +30,19 @@ class BookController extends Controller
      */
     public function index(Request $request)
     {
-       if($request->has('search')){
-            $books = Book::where("name","like","%". $request->search . "%")->paginate(PAGINATE_COUNT);
-            return view("admin.books.index", compact("books"));
+    //    if($request->has('search') || $request->has('category')){
 
-        }
+    //           $books = Book::with('category')->when($request->search,function($query){
+    //               return $query->where("name", "like", "%" . request()->search . "%");
+    //           })->when($request->category,function($category_query){
+    //               return $category_query->where('category_id',request()->category)->where("category_id","!=",0);
+    //           })->paginate(PAGINATE_COUNT);
+    //                                        ;
+    //           return view("admin.books.index", compact("books"));
 
-         $books = Book::with("category")->orderBy("id","desc")->paginate(PAGINATE_COUNT);
+    //     }
+
+         $books = Book::with("category")->orderBy("id","desc")->get();
 
          return view("admin.books.index",compact("books"));
     }
@@ -67,7 +73,7 @@ class BookController extends Controller
                 $validated['photo'] = imageUpload($request->photo,"books");
             }
 
-            $validated['category_id'] = $request->category_id ?? 0;
+            $validated['category_id'] = $request->category_id ?? null;
 
             Book::create($validated);
 
@@ -114,6 +120,8 @@ class BookController extends Controller
         try{
 
                 $validated = $request->validated();
+
+                $validated['category_id'] = $request->category_id ?? null;
 
                 if($request->has("photo")){
                    $validated['photo'] = imageUpload($request->photo, "books");

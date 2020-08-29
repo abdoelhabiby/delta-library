@@ -1,12 +1,12 @@
 <?php
 
-namespace App;
+namespace App\Models\Admin;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-class User extends Authenticatable
+class Student extends Authenticatable
 {
     use Notifiable;
 
@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'full_name', 'student_id','active','level','photo','phone', 'password',
     ];
 
     /**
@@ -33,7 +33,23 @@ class User extends Authenticatable
      *
      * @var array
      */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
+
+
+
+    public function scopeActive($query)
+    {
+        return $query->where("active", 1);
+    }
+
+    public function getCaseActive()
+    {
+        return $this->active == 1 ? __("admin.enabled") : __("admin.not_enabled");
+    }
+
+
+    public function getFisrtName()
+    {
+        $fisrt_name = explode(' ', $this->full_name);
+        return $fisrt_name[0];
+    }
 }

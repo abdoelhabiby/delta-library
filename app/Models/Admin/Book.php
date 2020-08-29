@@ -10,11 +10,7 @@ class Book extends Model
 {
     protected $guarded = [];
 
-    public static function boot()
-    {
-        parent::boot();
-        Book::observe(BookObserver::class);
-    }
+
 
     public function getCaseActive()
     {

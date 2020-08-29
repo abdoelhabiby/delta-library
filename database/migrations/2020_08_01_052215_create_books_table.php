@@ -18,7 +18,7 @@ class CreateBooksTable extends Migration
             $table->string("name");
             $table->text("description");
             $table->string("photo")->default("/images/books/default.jpg");
-            $table->unsignedInteger("category_id");
+            $table->unsignedInteger("category_id")->nullable();
             $table->tinyInteger("active")->default(1);
             $table->tinyInteger("parent_active")->default(1);
             $table->timestamps();

@@ -16,6 +16,8 @@ Route::group(["namespace" => "Admin"],function(){
 
         Route::resources([
             "admins" => "AdminController",
+            "employees" => "EmployeeController",
+            "students" => "StudentController",
             "categories" => "CategoryController",
             "books" => "BookController"
         ], [
@@ -24,6 +26,7 @@ Route::group(["namespace" => "Admin"],function(){
 
 
             Route::get("admins/{admin}/show", "AdminController@show")->name("admin.admins.show");
+            Route::get("employees/{employee}/show", "EmployeeController@show")->name("admin.employees.show");
 
 
 

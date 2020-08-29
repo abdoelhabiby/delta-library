@@ -27,7 +27,7 @@
       <!-- Nav Item - admins Collapse Menu -->
       <li class="nav-item  {{request()->segment(2) == "admins" ? "active" : ''}}">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#admins" aria-expanded="true" aria-controls="collapseTwo">
-          <i class="fas fa-fw fa-list-alt"></i>
+          <i class="fas fa-fw fa-users"></i>
           <span>{{__("admin.admins")}}</span>
           <span class="badge badge badge-info badge-pill ">{{App\Models\Admin\Admin::role('admin')->count()}}</span>
 
@@ -47,6 +47,60 @@
 
  <!-- -- -------------end admins  ----------- --!>
 
+ <!-- -- -------------start employees  ----------- --!>
+  @if(admin()->hasPermissionTo('read_employees'))
+      <!-- Nav Item - employees Collapse Menu -->
+      <li class="nav-item  {{request()->segment(2) == "employees" ? "active" : ''}}">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#employees" aria-expanded="true" aria-controls="collapseTwo">
+          <i class="fas fa-fw fa-users"></i>
+          <span>{{__("admin.employees")}}</span>
+          <span class="badge badge badge-info badge-pill ">{{App\Models\Admin\Admin::role('employees')->count()}}</span>
+
+
+        </a>
+        <div id="employees" class="collapse {{request()->segment(2) == "employees" ? "show" : ''}}" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <a class="collapse-item" href="{{route("admin.employees.index")}}" style="background:#ecedf7">{{__("admin.show_all")}}</a>
+           @if(admin()->can('create_employees'))
+            <a class="collapse-item" href="{{route("admin.employees.create")}}">{{__("admin.create")}}</a>
+            @endif
+          </div>
+        </div>
+      </li>
+
+         <!-- Divider -->
+      <hr class="sidebar-divider my-0">
+   @endif
+
+ <!-- -- -------------end employees  ----------- --!>
+
+ <!-- -- -------------start students  ----------- --!>
+  @if(admin()->hasPermissionTo('read_students'))
+      <!-- Nav Item - students Collapse Menu -->
+      <li class="nav-item  {{request()->segment(2) == "students" ? "active" : ''}}">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#students" aria-expanded="true" aria-controls="collapseTwo">
+          <i class="fas fa-fw fa-users"></i>
+          <span>{{__("admin.students")}}</span>
+          <span class="badge badge badge-info badge-pill ">{{App\Models\Admin\Student::count()}}</span>
+
+
+        </a>
+        <div id="students" class="collapse {{request()->segment(2) == "students" ? "show" : ''}}" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <a class="collapse-item" href="{{route("admin.students.index")}}" style="background:#ecedf7">{{__("admin.show_all")}}</a>
+           @if(admin()->can('create_students'))
+            <a class="collapse-item" href="{{route("admin.students.create")}}">{{__("admin.create")}}</a>
+            @endif
+          </div>
+        </div>
+      </li>
+
+         <!-- Divider -->
+      <hr class="sidebar-divider my-0">
+   @endif
+
+ <!-- -- -------------end employees  ----------- --!>
+
  <!-- -- -------------start categories  ----------- --!>
   @if(admin()->hasPermissionTo('read_categories'))
       <!-- Nav Item - categories Collapse Menu -->
@@ -61,8 +115,10 @@
         <div id="categories" class="collapse {{request()->segment(2) == "categories" ? "show" : ''}}" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <a class="collapse-item" href="{{route("admin.categories.index")}}" style="background:#ecedf7">{{__("admin.show_all")}}</a>
+           @if(admin()->can('create_categories'))
             <a class="collapse-item" href="{{route("admin.categories.create")}}">{{__("admin.create")}}</a>
-          </div>
+           @endif
+        </div>
         </div>
       </li>
 
@@ -73,7 +129,7 @@
  <!-- -- -------------end categories  ----------- --!>
 
 {{--  -------------------start books----------------------------------  --}}
-  @if(admin()->hasPermissionTo('read_categories'))
+  @if(admin()->hasPermissionTo('read_books'))
 
     <!-- Nav Item - books Collapse Menu -->
       <li class="nav-item  {{request()->segment(2) == "books" ? "active" : ''}}">
@@ -87,8 +143,10 @@
         <div id="books" class="collapse {{request()->segment(2) == "books" ? "show" : ''}}" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <a class="collapse-item" href="{{route("admin.books.index")}}" style="background:#ecedf7">{{__("admin.show_all")}}</a>
+           @if(admin()->can('create_books'))
             <a class="collapse-item" href="{{route("admin.books.create")}}">{{__("admin.create")}}</a>
-          </div>
+           @endif
+        </div>
         </div>
       </li>
 

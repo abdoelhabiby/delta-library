@@ -95,7 +95,7 @@
                                                                  aria-label="Basic example">
 
                                                                 <a href="{{route("admin.admins.show",$admin->id)}}"
-                                                                   class="btn btn-outline-primary btn-min-width box-shadow-3 mr-1 mb-1">
+                                                                   class="btn btn-outline-info btn-min-width box-shadow-3 mr-1 mb-1">
                                                                    {{__("admin.show")}}
                                                                 </a>
 

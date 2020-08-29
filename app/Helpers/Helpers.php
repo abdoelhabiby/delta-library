@@ -36,6 +36,28 @@ function admin(){
     return auth("admin")->user();
 }
 
+function student(){
+    return auth("web")->user();
+}
 
 
+function permissionsEmployees(){
+    return[
+        //------------------categories-----------------
+        "create_categories",
+        "read_categories",
+        "edit_categories",
+        "delete_categories",
+        //-------------------books --------------------
+        "create_books",
+        "read_books",
+        "edit_books",
+        "delete_books",
+        //---------------------------------------------
+        "create_students",
+        "read_students",
+        "edit_students",
+        "delete_students",
+    ];
+}
 

@@ -2,6 +2,7 @@
 
 namespace App\Models\Admin;
 
+use App\Observers\CategoryObserver;
 use Illuminate\Database\Eloquent\Model;
 
 class Category extends Model
@@ -11,6 +12,13 @@ class Category extends Model
         "name",
         "active",
     ];
+
+
+    public static function boot()
+    {
+        parent::boot();
+        Category::observe(CategoryObserver::class);
+    }
 
 
     public function getCaseActive()
