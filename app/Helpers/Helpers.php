@@ -53,11 +53,16 @@ function permissionsEmployees(){
         "read_books",
         "edit_books",
         "delete_books",
-        //---------------------------------------------
+        //--------------students--------------------------
         "create_students",
         "read_students",
         "edit_students",
         "delete_students",
+        //--------------reservations--------------------------
+        "read_reservations",
+        "edit_reservations",
+        "delete_reservations",
+
     ];
 }
 

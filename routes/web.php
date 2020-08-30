@@ -32,7 +32,7 @@ Route::group(['namespace' => 'Front'], function () {
 
          Route::get("logout" , "Auth\LoginController@logout")->name('logout');
 
-         Route::get("/books/{book}/reservation", "BookController@reservationView")->name('books.reservation');
+         Route::post("/books/{book}/reservation", "BookReservationController@store")->name('books.reservation');
     });
 
 

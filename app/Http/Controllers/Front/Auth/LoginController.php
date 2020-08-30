@@ -14,7 +14,7 @@ class LoginController extends Controller
 
     public function login()
     {
-          session(['test' => URL::previous()]);
+          session(['web_redirect_to' => URL::previous()]);
 
         return view("front.login");
     }
@@ -40,7 +40,7 @@ class LoginController extends Controller
             ])){
 
 
-                return redirect(session()->get('test') ?? '/');
+                return redirect(session()->get('web_redirect_to') ?? '/');
 
             }
 

@@ -156,6 +156,32 @@
 {{--  -------------------end books----------------------------------  --}}
 
 
+{{--  -------------------start reservations----------------------------------  --}}
+  @if(admin()->hasPermissionTo('read_reservations'))
+
+    <!-- Nav Item - reservations Collapse Menu -->
+      <li class="nav-item  {{request()->segment(2) == "reservations" ? "active" : ''}}">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#reservations" aria-expanded="true" aria-controls="collapseTwo">
+          <i class="fas fa-fw fa-book"></i>
+          <span>{{__("admin.reservations")}}</span>
+          <span class="badge badge badge-info badge-pill ">{{App\Models\Reservation::count()}}</span>
+
+
+        </a>
+        <div id="reservations" class="collapse {{request()->segment(2) == "reservations" ? "show" : ''}}" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <a class="collapse-item" href="{{route("admin.reservations.index")}}" style="background:#ecedf7">{{__("admin.show_all")}}</a>
+
+        </div>
+        </div>
+      </li>
+
+         <!-- Divider -->
+      <hr class="sidebar-divider my-0">
+@endif
+{{--  -------------------end reservations----------------------------------  --}}
+
+
 
 
       <div class="text-center d-none d-md-inline">

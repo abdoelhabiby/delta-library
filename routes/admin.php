@@ -28,6 +28,12 @@ Route::group(["namespace" => "Admin"],function(){
             Route::get("admins/{admin}/show", "AdminController@show")->name("admin.admins.show");
             Route::get("employees/{employee}/show", "EmployeeController@show")->name("admin.employees.show");
 
+            Route::get("admins/reservations","BookReservationController@index")->name("admin.reservations.index");
+            Route::post("admins/reservations/{reservation}/active","BookReservationController@active")->name("admin.reservations.active");
+            Route::post("admins/reservations/{reservation}/receive_in","BookReservationController@receive_in")->name("admin.reservations.receive_in");
+            Route::post("admins/reservations/{reservation}/retrieved_in","BookReservationController@retrieved_in")->name("admin.reservations.retrieved_in");
+            Route::delete("admins/reservations/{reservation}","BookReservationController@destroy")->name("admin.reservations.destroy");
+
 
 
 

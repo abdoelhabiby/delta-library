@@ -1,6 +1,6 @@
 @extends('layouts.site')
 @section('title')
- | الكتب
+    | الكتب
 @endsection
 @section('content')
 
@@ -14,10 +14,12 @@
 
                         @foreach ($books as $book)
                             <div class="col">
-                               <a href="{{ route('book.show',$book->id) }}" style="text-decoration: none">
                                 <div class="book-body">
                                     <div class="book-img">
-                                        <img src="{{ asset($book->photo) }}" alt="books" />
+                                        <a href="{{ route('book.show', $book->id) }}" style="text-decoration: none">
+
+                                            <img src="{{ asset($book->photo) }}" alt="books" />
+                                        </a>
                                     </div>
                                     <div class="book-info">
                                         <span class="category">{{ $book->category ? $book->category->name : '' }}</span>
@@ -38,22 +40,26 @@
                                         </div>
                                         <div class="booking">
                                             @if (student())
-                                                <i class="heart-emptyicon- love"></i>
+                                                {{-- <i class="heart-emptyicon- love"></i> --}}
 
                                                 @if ($book->active == 1)
-                                                    <a class="booking-btn" href="{{ route('book.show',$book->id) }}">حجز</a>
+
+                                                    <a class="booking-btn" href="{{ route('book.show', $book->id) }}">حجز</a>
+
                                                 @endif
 
 
-                                            @else
+                                            @elseif($book->active == 1)
                                                 <a class="booking-btn" href="{{ route('login') }}">حجز</a>
                                             @endif
+
+
 
 
                                         </div>
                                     </div>
                                 </div>
-                               </a>
+
                             </div>
                         @endforeach
 
@@ -63,6 +69,11 @@
                     </div>
                 </div>
             </article>
+
+        @else
+            <div class="d-flex justify-content-center mt-5">
+                <h2> لا يوجد كتب ...... </h2>
+            </div>
         @endif
 
         <div class="d-flex justify-content-center mt-5">

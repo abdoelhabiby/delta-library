@@ -2,6 +2,7 @@
 
 namespace App\Models\Admin;
 
+use App\Models\Reservation;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -51,5 +52,16 @@ class Student extends Authenticatable
     {
         $fisrt_name = explode(' ', $this->full_name);
         return $fisrt_name[0];
+    }
+
+
+    public function reservations()
+    {
+        return $this->hasMany(Reservation::class,'student_id','id');
+    }
+
+    public function reservationActive()
+    {
+        return $this->hasOne(Reservation::class, 'student_id', 'id')->where('active', 1);
     }
 }

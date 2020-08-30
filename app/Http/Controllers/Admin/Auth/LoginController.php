@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers\Admin\Auth;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\URL;
+use App\Http\Controllers\Controller;
 
 class LoginController extends Controller
 {
 
     public function showLoginForm(){
+
+        session(['admin_redirect_to' => URL::previous()]);
         return view("admin.auth.login");
     }
 
@@ -28,7 +31,8 @@ class LoginController extends Controller
              "email" => $request->email , "password" => $request->password
          ],$remeber)){
 
-             return redirect()->route("admin.home");
+            return redirect(session()->get('admin_redirect_to') ?? route("admin.home"));
+
          }
 
 

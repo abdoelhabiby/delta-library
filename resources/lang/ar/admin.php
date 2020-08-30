@@ -95,6 +95,11 @@ return [
     "edit_books" => "تعديل ألكتب",
     "delete_books" => " حذف ألكتب ",
    //---------------------------------------------
+    //-------------------reservations --------------------
+    "read_reservations" => "عرض الحجوزات",
+    "edit_reservations" => "تعديل الحجوزات",
+    "delete_reservations" => " حذف الحجوزات ",
+   //---------------------------------------------
    "employees" => "الموظفين",
     "search_for" => "ابحث عن ...",
     "logout" => "تسجيل الخروج",
@@ -112,7 +117,17 @@ return [
     "required_level" => "رقم الفرقه مطلوب",
     "required_level_in" => "رقم الفرقه غير موجود",
     "reservation" => "الحجز",
-     "public" => "عام"
+    "public" => "عام",
+    "receive_in" => "استلم في",
+    "retrieved_in" => " استرجع في",
+    "reservations" => "الحجوزات",
+
+    "error_cant_delete_book" => "لا يمكن حذف الكتاب حاليا لانه مستعار .....",
+    "error_cant_delete_reservation" => "لا يمكن حذف الحجز حاليا لحين عوده الكتاب  .....",
+    "error_cant_delete_student" => "لا يمكن حذف ألطالب حاليا لحين عوده الكتب  .....",
+
+    "be_not_enabled"  => "الغاء التفعيل",
+    "be_enabled"  => "تفعيل",
 
 
 

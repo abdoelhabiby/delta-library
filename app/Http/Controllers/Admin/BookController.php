@@ -151,8 +151,18 @@ class BookController extends Controller
      */
     public function destroy(Book $book)
     {
+
+
+
         try{
+
+            if ($book->reservationActive) {
+                return redirect(route("admin.books.index"))->with(['error' => __("admin.error_cant_delete_book")]);
+            }
+
+            $book->reservation()->delete();
             $book->delete();
+
             if ($book->photo != "/images/books/default.jpg") {
                 deleteFile($book->photo);
             }

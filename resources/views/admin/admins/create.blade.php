@@ -146,6 +146,8 @@
                                                   <?php
                                                     $modules = ['employees','students','categories','books'];
                                                     $permissions = ['create','read','edit','delete'];
+
+                                                    $perm_reservations = ['read','edit','delete'];
                                                   ?>
 
                                                    <nav class="mt-2">
@@ -156,6 +158,7 @@
                                                             <a class="nav-item nav-link {{$index == 0 ? 'active' : ''}}" id="nav-{{$module}}-tab" data-toggle="tab" href="#nav-{{$module}}" role="tab" aria-controls="nav-{{$module}}" aria-selected="true">{{__('admin.'.$module)}}</a>
                                                      @endforeach
 
+                                                            <a class="nav-item nav-link " id="nav-reservations-tab" data-toggle="tab" href="#nav-reservations" role="tab" aria-controls="nav-reservations" aria-selected="true">{{__('admin.'. 'reservations')}}</a>
 
 
 
@@ -169,7 +172,7 @@
                                                     <div class="tab-pane fade show {{$index_module == 0 ? 'active' : ''}}" id="nav-{{$module}}" role="tabpanel" aria-labelledby="nav-{{$module}}-tab">
 
                                                      @foreach($permissions as $index => $permission)
-                                                            <input type="checkbox" id="{{$permission . '_' . $module}}"  value="{{$permission . '_' . $module}}" name="permissions[]">
+                                                     <input type="checkbox" id="{{$permission . '_' . $module}}"  value="{{$permission . '_' . $module}}" name="permissions[]">
 
                                                       <label class="checkbox-inline " for="{{$permission . '_' . $module}}">
                                                         {{ __('admin.'.$permission)}}
@@ -180,6 +183,19 @@
                                                     </div>
 
                                                      @endforeach
+
+                                        <div class="tab-pane fade show " id="nav-reservations" role="tabpanel" aria-labelledby="nav-reservations-tab">
+
+                                                     @foreach($perm_reservations as $index => $permission)
+                                                     <input type="checkbox" id="{{$permission . '_' . 'reservations'}}"  value="{{$permission . '_' . 'reservations'}}" name="permissions[]">
+
+                                                      <label class="checkbox-inline " for="{{$permission . '_' . 'reservations'}}">
+                                                        {{ __('admin.'.$permission)}}
+                                                      </label>
+
+                                                     @endforeach
+
+                                                    </div>
 
                                                   </div>
 

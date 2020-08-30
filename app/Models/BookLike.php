@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class BookLike extends Model
 {
-    //
+    protected $guarded = [];
 }

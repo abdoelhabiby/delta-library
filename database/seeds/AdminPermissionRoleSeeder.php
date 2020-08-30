@@ -62,6 +62,12 @@ class AdminPermissionRoleSeeder extends Seeder
             "edit_students" ,
             "delete_students",
 
+            //---------------reservations--------------------
+
+            "read_reservations",
+            "edit_reservations",
+            "delete_reservations",
+
         ];
 
         $insert_permission = [];

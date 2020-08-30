@@ -135,7 +135,13 @@ class StudentController extends Controller
     public function destroy(Student $student)
     {
         try{
-            $student->delete();
+            if ($student->reservationActive) {
+                return redirect(route("admin.students.index"))->with(['error' => __("admin.error_cant_delete_student")]);
+            }
+
+            $student->reservation()->delete();
+
+              $student->delete();
               return redirect()->route("admin.students.index")->with(['success' => __("admin.success delete")]);
         } catch (\Exception $ex) {
             return redirect(route("admin.students.index"))->with(['error' => __("admin.message error")]);

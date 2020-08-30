@@ -3,6 +3,7 @@
 namespace App\Models\Admin;
 
 use App\Models\Admin\Category;
+use App\Models\Reservation;
 use App\Observers\BookObserver;
 use Illuminate\Database\Eloquent\Model;
 
@@ -20,5 +21,17 @@ class Book extends Model
     public function category(){
         return $this->belongsTo(Category::class,'category_id','id');
     }
+
+
+    public function reservationActive()
+    {
+        return $this->hasOne(Reservation::class,'book_id','id')->where('active',1);
+    }
+
+    public function reservation()
+    {
+        return $this->hasMany(Reservation::class,'book_id', 'id');
+    }
+
 
 }
