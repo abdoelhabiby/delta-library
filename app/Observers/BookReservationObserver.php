@@ -30,6 +30,16 @@ class BookReservationObserver
     }
 
 
+    public function deleted(Reservation $reservation)
+    {
+
+        if($reservation->active){
+            $reservation->book()->update(['active' => 1]);
+        }
+
+    }
+
+
 
 
 }

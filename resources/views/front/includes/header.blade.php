@@ -24,19 +24,21 @@
                             ألاقسام
                         </a>
                         <div class="dropdown-menu" aria-labelledby="categoriesDropdown">
+                            <a class="dropdown-item" href="{{route("books")}}">عام</a>
                             @if (categoriesActive() && categoriesActive()->count() > 0)
 
                                 @foreach (categoriesActive() as $category)
+                                <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="{{route('books') . '?category=' . $category->name}}">{{ $category->name }}</a>
                                 @endforeach
 
-                                <div class="dropdown-divider"></div>
+
 
                             @else
 
                             @endif
 
-                            <a class="dropdown-item" href="{{route("books")}}">عام</a>
+
                         </div>
 
 
@@ -52,6 +54,9 @@
                                 {{ student()->getFisrtName() }}
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+                                <a class="dropdown-item" href="{{ route('student.books') }}"> كتبي</a>
+                                <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="{{ route('logout') }}">تسجيل الخروج</a>
                                 {{-- <a class="dropdown-item" href="#">حجز كتاب</a>
                                 --}}

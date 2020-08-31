@@ -25,14 +25,9 @@ class AdminController extends Controller
      */
     public function index(Request $request)
     {
-        if($request->has('search')){
-           $admins = Admin::role("admin")->where("name","like","%". $request->search . "%")
-                            ->orWhere("email", "like", "%" . $request->search . "%")->paginate(PAGINATE_COUNT);
-           return view("admin.admins.index", compact("admins"));
 
-        }
 
-        $admins = Admin::role("admin")->orderBy("id",'desc')->paginate(PAGINATE_COUNT);
+        $admins = Admin::role("admin")->orderBy("id",'desc')->get();
         return view("admin.admins.index",compact("admins"));
     }
 

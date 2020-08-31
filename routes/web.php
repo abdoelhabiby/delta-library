@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Route;
 
 
 
+Route::post("contact-us", "Admin\ContactUsController@store")->name('contact_us');
 
 
 Route::group(['namespace' => 'Front'], function () {
@@ -28,11 +29,14 @@ Route::group(['namespace' => 'Front'], function () {
 
 
 
+
     Route::group(['middleware' => 'auth:web'], function() {
 
          Route::get("logout" , "Auth\LoginController@logout")->name('logout');
 
          Route::post("/books/{book}/reservation", "BookReservationController@store")->name('books.reservation');
+         Route::post("/students/reservation/{reservation}/cancel", "BookReservationController@reservationCancel")->name('student.reservation.cancel');
+         Route::get("/student/books", "BookReservationController@books")->name('student.books');
     });
 
 

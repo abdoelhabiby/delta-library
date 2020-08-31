@@ -13,6 +13,7 @@ class Reservation extends Model
 
     protected $fillable= ['receive_in', 'retrieved_in', 'active'];
 
+
     public static function boot()
     {
         parent::boot();
@@ -35,6 +36,19 @@ class Reservation extends Model
         return $this->active == 1 ? __("admin.enabled") : __("admin.not_enabled");
 
     }
+
+    public function getCaseReservation()
+    {
+        if ($this->active && $this->receive_in && $this->retrieved_in == null) {
+            return "لديك";
+        } elseif ($this->active == 0 && $this->receive_in  && $this->retrieved_in ) {
+            return "تمت استعاره من قبل";
+        } elseif ($this->active && $this->receive_in == null && $this->retrieved_in == null) {
+
+            return "cancel";
+        }
+    }
+
 
 
 }

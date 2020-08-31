@@ -3,10 +3,20 @@
                 <div class="container">
                     <div class="row">
                         <div class="col">
-                            <form action="">
-                                <input type="text" placeholder=" 🙋‍♂️ ألاســم" />
-                                <input type="text" placeholder=" ✌  ألاميــل " />
-                                <textarea name="" id="" cols="30" rows="4" placeholder="رســالتك!"></textarea>
+                            <form action="{{route('contact_us')}}" method="post">
+                                @csrf
+                                <input type="text" name="name" value="{{old('name')}}" placeholder=" 🙋‍♂️ ألاســم" />
+                                @error('name')
+                                    <p class="text-white float-right">{{$message}}</p>
+                                @enderror
+                                <input type="text" name="email" value="{{old('email')}}" placeholder=" ✌  البريد الالكتروني " />
+                                @error('email')
+                                    <p class="text-white float-right">{{$message}}</p>
+                                @enderror
+                                <textarea name="message" id="" cols="30" rows="4" placeholder="رســالتك!">{{old('message')}}</textarea>
+                                @error('message')
+                                    <p class="text-white float-right">{{$message}}</p>
+                                @enderror
                                 <button>أرســال طلـب!</button>
                             </form>
                             <div class="row info-map">

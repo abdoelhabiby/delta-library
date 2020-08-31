@@ -181,6 +181,30 @@
 @endif
 {{--  -------------------end reservations----------------------------------  --}}
 
+{{--  -------------------start contactUs----------------------------------  --}}
+
+    <!-- Nav Item - contactUs Collapse Menu -->
+      <li class="nav-item  {{request()->segment(2) == "contactUs" ? "active" : ''}}">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#contactUs" aria-expanded="true" aria-controls="collapseTwo">
+          <i class="fas fa-fw fa-book"></i>
+          <span>{{__("admin.contactUs")}}</span>
+          <span class="badge badge badge-info badge-pill ">{{App\Models\Contact::count()}}</span>
+
+
+        </a>
+        <div id="contactUs" class="collapse {{request()->segment(2) == "contact-us" ? "show" : ''}}" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <a class="collapse-item" href="{{route("admin.contactUs.index")}}" style="background:#ecedf7">{{__("admin.show_all")}}</a>
+
+        </div>
+        </div>
+      </li>
+
+         <!-- Divider -->
+      <hr class="sidebar-divider my-0">
+
+{{--  -------------------end contactUs----------------------------------  --}}
+
 
 
 

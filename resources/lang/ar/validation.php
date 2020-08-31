@@ -176,6 +176,8 @@ return [
         "active"                => "الحالة",
         "direction"             => "اتجاه",
         "photo"                 => "الصوره",
+        "message"               => "ألرساله",
+        "response"              => "الرد",
 
 
 

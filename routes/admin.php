@@ -1,8 +1,6 @@
 <?php
 
-use App\Models\Admin\Admin;
 use Illuminate\Support\Facades\Route;
-use Spatie\Permission\Models\Permission;
 
 define("PAGINATE_COUNT",10);
 
@@ -24,6 +22,9 @@ Route::group(["namespace" => "Admin"],function(){
             'as' => "admin","except" => "show"
             ]);
 
+            //------------------- --- profile ----------------------------------------
+            Route::get("admins/profile","ProfileController@index")->name('admin.profile');
+            //------------------end profile ------------------------------------------
 
             Route::get("admins/{admin}/show", "AdminController@show")->name("admin.admins.show");
             Route::get("employees/{employee}/show", "EmployeeController@show")->name("admin.employees.show");
@@ -35,6 +36,14 @@ Route::group(["namespace" => "Admin"],function(){
             Route::delete("admins/reservations/{reservation}","BookReservationController@destroy")->name("admin.reservations.destroy");
 
 
+            //--------------------------------contact us----------------------------------
+
+              Route::get("contact-us","ContactUsController@index")->name("admin.contactUs.index");
+              Route::get("contact-us/{contact}","ContactUsController@show")->name("admin.contactUs.show");
+              Route::post("contact-us/{contact}","ContactUsController@response")->name("admin.contactUs.response");
+              Route::delete("contact-us/{contact}","ContactUsController@destroy")->name("admin.contactUs.destroy");
+
+            //--------------------------------end contact us-------------------------------
 
 
 

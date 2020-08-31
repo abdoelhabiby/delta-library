@@ -29,7 +29,7 @@ class EmployeeRequest extends FormRequest
             'name' => 'required|string|min:3,max:150',
             'email' => 'required|email|unique:admins,email',
             'password' => 'required|min:6|string|confirmed',
-            'photo'  => 'required|image|mimes:png,jpg,jpeg',
+            'photo'  => 'sometimes|nullable|image|mimes:png,jpg,jpeg',
             'permissions' => 'sometimes|nullable|array',
             'permissions.*' => 'required|exists:permissions,name|' . Rule::in(permissionsEmployees()), // ---function created in file helpers functions to get permissions eployees
         ];

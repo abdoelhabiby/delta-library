@@ -139,7 +139,11 @@ class StudentController extends Controller
                 return redirect(route("admin.students.index"))->with(['error' => __("admin.error_cant_delete_student")]);
             }
 
-            $student->reservation()->delete();
+            if($student->reservations->count() > 0){
+                $student->reservations()->delete();
+            }
+
+
 
               $student->delete();
               return redirect()->route("admin.students.index")->with(['success' => __("admin.success delete")]);

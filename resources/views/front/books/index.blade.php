@@ -10,6 +10,8 @@
 
             <article class="books-section">
                 <div class="container">
+                    @include('front.includes.alerts.errors')
+                    @include('front.includes.alerts.success')
                     <div class="row">
 
                         @foreach ($books as $book)
@@ -40,7 +42,8 @@
                                         </div>
                                         <div class="booking">
                                             @if (student())
-                                                {{-- <i class="heart-emptyicon- love"></i> --}}
+                                                {{-- <i class="heart-emptyicon- love"></i>
+                                                --}}
 
                                                 @if ($book->active == 1)
 

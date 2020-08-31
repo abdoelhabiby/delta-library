@@ -26,8 +26,10 @@ class Student extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password', 'remember_token'
     ];
+
+
 
     /**
      * The attributes that should be cast to native types.
@@ -64,4 +66,19 @@ class Student extends Authenticatable
     {
         return $this->hasOne(Reservation::class, 'student_id', 'id')->where('active', 1);
     }
+
+
+
+    public function books()
+    {
+        return $this->belongsToMany(Book::class,'reservations','student_id','book_id')->withPivot([
+            'receive_in',
+            'retrieved_in',
+            'active'
+        ]);
+    }
+
+
+
+
 }

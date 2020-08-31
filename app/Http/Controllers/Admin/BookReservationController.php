@@ -19,7 +19,7 @@ class BookReservationController extends Controller
     //----------------------------------------------------------
     public function index()
     {
-        $reservations = Reservation::with('student', 'book')->orderBy('id', 'desc')->get();
+       $reservations = Reservation::with('student', 'book')->orderBy('id', 'desc')->get();
 
         return view('admin.reservations.index', compact('reservations'));
     }
