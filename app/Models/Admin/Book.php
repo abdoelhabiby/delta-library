@@ -18,6 +18,11 @@ class Book extends Model
         return $this->active == 1 ? __("admin.enabled") : __("admin.not_enabled");
     }
 
+    public function getParrentCaseActive()
+    {
+        return $this->parent_active == 1 ? __("admin.enabled") : __("admin.not_enabled");
+    }
+
     public function category(){
         return $this->belongsTo(Category::class,'category_id','id');
     }

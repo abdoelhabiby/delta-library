@@ -6,8 +6,7 @@
     <!-- Start Slider -->
     <div class="slider">
         <div class="container">
-            @include('front.includes.alerts.errors')
-            @include('front.includes.alerts.success')
+
             <div class="row">
                 <div class="col">
                     <div class="intro">
@@ -47,95 +46,88 @@
 <!-- End About Us -->
 
 
+
+
+
+
+
 <!-- Start books -->
+
+@if($best_books->count() > 0)
+
+
 <section class="heading-section">
     <h2>قسم افضل الكتب</h2>
     <span>هتلاقي هني اهم واشهر الكتب اللي هتفيدك</span>
 </section>
 
 
-<article class="books-section">
-    <div class="container">
-        <div class="row">
-            <div class="col">
-                <div class="book-body">
-                    <div class="book-img">
-                        <img src="{{ asset('front') }}/images/books/must-read-html-css-books.jpg" alt="books" />
-                    </div>
-                    <div class="book-info">
-                        <span class="category">قسم تاريخ</span>
-                        <h3 class="book-name">كتاب حلو بس مجهد</h3>
-                        <span class="status status-yas">مــتاح</span>
-                    </div>
-                    <div class="book-details">
-                        <div class="stars">
-                            <i class="staricon-"></i>
-                            <i class="staricon-"></i>
-                            <i class="staricon-"></i>
-                            <i class="staricon-"></i>
-                            <i class="staricon-"></i>
-                        </div>
-                        <div class="booking">
-                            <i class="heart-emptyicon- love"></i>
-                            <a class="booking-btn" href="#">حجز</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="book-body">
-                    <div class="book-img">
-                        <img src="{{ asset('front') }}/images/books/must-read-html-css-books.jpg" alt="books" />
-                    </div>
-                    <div class="book-info">
-                        <span class="category">قسم الهكر</span>
-                        <h3 class="book-name">الدرر المنسيه في اختراق سرفرات الكلية</h3>
-                        <span class="status status-no">غير متاح</span>
-                    </div>
-                    <div class="book-details">
-                        <div class="stars">
-                            <i class="staricon-"></i>
-                            <i class="staricon-"></i>
-                            <i class="staricon-"></i>
-                            <i class="staricon-"></i>
-                            <i class="star-emptyicon-"></i>
-                        </div>
-                        <div class="booking">
-                            <i class="heart-emptyicon- love"></i>
-                            <a class="booking-btn" href="#">حجز</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="book-body">
-                    <div class="book-img">
-                        <img src="{{ asset('front') }}/images/books/must-read-html-css-books.jpg" alt="books" />
-                    </div>
-                    <div class="book-info">
-                        <span class="category">تطبيقات الانترنت</span>
-                        <h3 class="book-name">الانتيم للتعليم</h3>
-                        <span class="status status-no">غير متاح</span>
-                    </div>
-                    <div class="book-details">
-                        <div class="stars">
-                            <i class="staricon-"></i>
-                            <i class="staricon-"></i>
-                            <i class="star-emptyicon-"></i>
-                            <i class="star-emptyicon-"></i>
-                            <i class="star-emptyicon-"></i>
-                        </div>
-                        <div class="booking">
-                            <i class="heart-emptyicon- love"></i>
-                            <a class="booking-btn" href="#">حجز</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+   <article class="books-section">
+                <div class="container">
 
-        </div>
-    </div>
-</article>
+                    <div class="row">
+
+                        @foreach ($best_books as $book)
+                            <div class="col">
+                                <div class="book-body">
+                                    <div class="book-img">
+                                        <a href="{{ route('book.show', $book->id) }}" style="text-decoration: none">
+
+                                            <img src="{{ asset($book->photo) }}" alt="books" />
+                                        </a>
+                                    </div>
+                                    <div class="book-info">
+                                        <span class="category">{{ $book->category ? $book->category->name : '' }}</span>
+                                        <h3 class="book-name">{{ $book->name }}</h3>
+                                        @if ($book->active  && $book->parent_active)
+                                            <span class="status status-yas">متاح</span>
+                                        @else
+                                            <span class="status status-no">غير متاح</span>
+                                        @endif
+                                    </div>
+                                    <div class="book-details">
+                                        <div class="stars">
+                                            <i class="staricon-"></i>
+                                            <i class="staricon-"></i>
+                                            <i class="staricon-"></i>
+                                            <i class="staricon-"></i>
+                                            <i class="staricon-"></i>
+                                        </div>
+                                        <div class="booking">
+                                            @if (student())
+                                                {{-- <i class="heart-emptyicon- love"></i>
+                                                --}}
+
+                                                @if ($book->active  && $book->parent_active)
+
+                                                    <a class="booking-btn" href="{{ route('book.show', $book->id) }}">حجز</a>
+
+                                                @endif
+
+
+                                            @elseif($book->active  && $book->parent_active)
+                                                <a class="booking-btn" href="{{ route('login') }}">حجز</a>
+                                            @endif
+
+
+
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        @endforeach
+
+
+
+
+                    </div>
+                </div>
+            </article>
+
+
+@endif
 <!-- End Books -->
 
 

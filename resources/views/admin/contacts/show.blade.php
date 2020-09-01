@@ -62,31 +62,31 @@
                                                 </div>
 
                                             </div>
-                                            <hr>
 
-                                            <div class="row">
-                                                <div class="col-12">
-                                                    <strong>{{ __('admin.message') }} : </strong>
-                                                    <p>
-                                                        {{ $contact->message }}
-                                                    </p>
-                                                </div>
-                                            </div>
 
                                             <hr>
 
                                             {{-- ---------------last response
                                             ---------------------- --}}
-                                            @if ($contact->response)
-                                                <div class="last-response">
-                                                    <h5>الرد السابق</h5>
-                                                    <p>{{$contact->response}}</p>
 
-                                                </div>
+                                           <div class="elchat">
+                                            @if ($contact->load('messageResponses')->count() > 0)
+                                                @foreach ($contact->messageResponses as $message)
+                                                    <div style=""
+                                                        class="cont container  {{ $message->owner_by == $contact->email ? 'darker' : '' }}">
 
-                                                <hr>
+                                                          @if ($message->owner_body != $contact->email)
+                                                            <h5 class=" ">{{ __("admin.response_by") . " : " . $message->owner_body }}</h5>
+                                                        @endif
+                                                        <p>{{ $message->body }}</p>
 
+                                                         <span class="time-{{ $message->owner_body == $contact->email ? 'left' : 'right' }}">
+                                                            {{ $message->created_at }}
+                                                        </span>
+                                                    </div>
+                                                @endforeach
                                             @endif
+                                           </div>
 
                                             {{-- ---------------end last response
                                             ---------------------- --}}
@@ -132,4 +132,78 @@
         </div>
     </div>
 
+<style>
+    .elchat {
+        max-height: 400px;
+        overflow: auto;
+    }
+
+    /* Chat containers */
+    .cont {
+        border: 2px solid #dedede;
+        <?php
+        /* blade_comment_start */
+        ?>
+        background-color: #f1f1f1
+            <?php
+            /* blade_comment_end */
+            ?>
+            border-radius: 5px;
+        padding: 10px;
+        margin: 10px 0;
+    }
+
+    /* Darker chat container */
+    .darker {
+        border-color: #ccc;
+        background-color: #ddd;
+    }
+
+    /* Clear floats */
+    .container::after {
+        content: "";
+        clear: both;
+        display: table;
+    }
+
+    /* Style images */
+    .container img {
+        float: left;
+        max-width: 60px;
+        width: 100%;
+        margin-right: 20px;
+        border-radius: 50%;
+    }
+
+    /* Style the right image */
+    .container img.right {
+        float: right;
+        margin-left: 20px;
+        margin-right: 0;
+    }
+
+    /* Style time text */
+    .time-right {
+        float: right;
+        color: #aaa;
+    }
+
+    /* Style time text */
+    .time-left {
+        float: left;
+        color: #999;
+    }
+
+    .online {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        display: inline-block;
+        background: green;
+    }
+
+</style>
+
 @endsection
+
+

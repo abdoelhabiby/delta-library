@@ -43,6 +43,8 @@ class Reservation extends Model
             return "لديك";
         } elseif ($this->active == 0 && $this->receive_in  && $this->retrieved_in ) {
             return "تمت استعاره من قبل";
+        } elseif ($this->active == 0 && $this->receive_in == null && $this->retrieved_in == null) {
+            return "تم رفض طلبك";
         } elseif ($this->active && $this->receive_in == null && $this->retrieved_in == null) {
 
             return "cancel";

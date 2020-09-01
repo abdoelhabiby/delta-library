@@ -9,8 +9,7 @@
     <article class="books-section">
         <div class="container">
 
-            @include('front.includes.alerts.errors')
-            @include('front.includes.alerts.success')
+
 
 
             <div class="row">
@@ -23,7 +22,7 @@
                             <div class="book-info">
                                 <span class="category">{{ $book->category ? $book->category->name : '' }}</span>
                                 <h3 class="book-name">{{ $book->name }}</h3>
-                                @if ($book->active == 1)
+                                @if ($book->active  && $book->parent_active)
                                     <span class="status status-yas">متاح</span>
                                 @else
                                     <span class="status status-no">غير متاح</span>
@@ -58,7 +57,7 @@
 
                 </div>
 
-                @if ($book->active == 1)
+                @if ($book->active  && $book->parent_active)
                     @if (student())
                         <form action="{{ route('books.reservation', $book->id) }}" method="post">
                             @csrf

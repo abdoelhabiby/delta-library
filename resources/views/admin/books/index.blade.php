@@ -61,6 +61,7 @@
                                                                  <th>{{__("admin.category")}}</th>
                                                                  <th>{{__("admin.photo")}}</th>
                                                                  <th>{{__("admin.active")}}</th>
+                                                                 <th>{{__("admin.parent_active")}}</th>
                                                                  <th>{{__("admin.action")}}</th>
                                                                 </tr>
                                                             </thead>
@@ -78,6 +79,9 @@
                                                         </td>
                                                         <td>
                                                             {{$book->getCaseActive()}}
+                                                        </td>
+                                                        <td>
+                                                            {{$book->getParrentCaseActive()}}
                                                         </td>
                                                         <td>
                                                             <div class="btn-group" role="group"

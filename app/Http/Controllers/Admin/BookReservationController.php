@@ -88,7 +88,7 @@ class BookReservationController extends Controller
 
         try {
 
-            if ($reservation->active == 1) {
+            if ($reservation->active == 1 && $reservation->receive_in ) {
                 return redirect(route("admin.reservations.index"))->with(['error' => __("admin.message error")]);
             }
 

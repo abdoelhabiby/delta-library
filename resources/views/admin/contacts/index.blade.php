@@ -58,7 +58,7 @@
                        <th>{{__("admin.name")}}</th>
                        <th>{{__("admin.email")}}</th>
                        <th>{{__("admin.created_at")}}</th>
-                       <th>{{__("admin.updated_at")}}</th>
+                       <th>{{__("admin.was_answered_in")}}</th>
                         <th>{{__("admin.action")}}</th>
                     </tr>
                   </thead>
@@ -73,7 +73,7 @@
                                 {{$contact->email}}
                             </td>
                             <td>{{$contact->created_at}}</td>
-                            <td>{{$contact->updated_at}}</td>
+                            <td>{{$contact->was_answered_in}}</td>
                             <td>
                                 <div class="btn-group" role="group"
                                         aria-label="Basic example">

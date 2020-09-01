@@ -1,11 +1,11 @@
  <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{route('admin.home')}}">
         <div class="sidebar-brand-icon rotate-n-15">
           <i class="fas fa-laugh-wink"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">Libraray 2</div>
+        <div class="sidebar-brand-text mx-3">Osah Maser</div>
       </a>
 
       <!-- Divider -->
@@ -162,7 +162,7 @@
     <!-- Nav Item - reservations Collapse Menu -->
       <li class="nav-item  {{request()->segment(2) == "reservations" ? "active" : ''}}">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#reservations" aria-expanded="true" aria-controls="collapseTwo">
-          <i class="fas fa-fw fa-book"></i>
+          <i class="fas fa-fw fa-list-alt"></i>
           <span>{{__("admin.reservations")}}</span>
           <span class="badge badge badge-info badge-pill ">{{App\Models\Reservation::count()}}</span>
 
@@ -186,7 +186,7 @@
     <!-- Nav Item - contactUs Collapse Menu -->
       <li class="nav-item  {{request()->segment(2) == "contactUs" ? "active" : ''}}">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#contactUs" aria-expanded="true" aria-controls="collapseTwo">
-          <i class="fas fa-fw fa-book"></i>
+          <i class="fas fa-fw fa-phone"></i>
           <span>{{__("admin.contactUs")}}</span>
           <span class="badge badge badge-info badge-pill ">{{App\Models\Contact::count()}}</span>
 

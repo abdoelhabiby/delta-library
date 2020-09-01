@@ -26,6 +26,8 @@
 
         <!-- start content -->
           @yield('content')
+
+
         <!-- end content -->
 
 

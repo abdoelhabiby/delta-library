@@ -70,7 +70,7 @@ class EmployeeController extends Controller
             ];
 
             if($request->has('photo')){
-                $path = imageUpload($request->photo,"employees");
+                $path = imageUpload($request->photo,"admins");
                 $validated['photo'] = $path;
             }
 
@@ -143,7 +143,7 @@ class EmployeeController extends Controller
 
 
             if ($request->has('photo')) {
-                $path = imageUpload($request->photo, "employees");
+                $path = imageUpload($request->photo, "admins");
                 $validated['photo'] = $path;
 
                 if($employee->photo != "images/user_default.png"){

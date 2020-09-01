@@ -10,8 +10,7 @@
 
             <article class="books-section">
                 <div class="container">
-                    @include('front.includes.alerts.errors')
-                    @include('front.includes.alerts.success')
+
                     <div class="row">
 
                         @foreach ($reservations as $reservation)

@@ -16,7 +16,7 @@ class BookReservationController extends Controller
         try {
 
 
-            if (!student()->active || !$book->active) {
+            if (!student()->active || !$book->active || !$book->parent_active) {
                 return redirect()->back()->with(['error' => 'حدث خطأ يرجي المحاوله في وقت لاحق']);
             }
 

@@ -28,8 +28,11 @@
                             @if (categoriesActive() && categoriesActive()->count() > 0)
 
                                 @foreach (categoriesActive() as $category)
-                                <div class="dropdown-divider"></div>
+                                  @if($category->books->count() > 0)
+                                      <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="{{route('books') . '?category=' . $category->name}}">{{ $category->name }}</a>
+                                  @endif
+
                                 @endforeach
 
 
@@ -83,6 +86,10 @@
     </nav>
     <!-- end Navbar -->
 
+
+@include('front.includes.alerts.errors')
+@include('front.includes.alerts.success')
+
     <!-- start slider -->
     {{-- because the designer make slider a chiled of parent header a7la qeno
     --}}
@@ -90,3 +97,4 @@
     <!-- end slider -->
 
 </header>
+

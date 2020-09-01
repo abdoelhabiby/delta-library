@@ -2,6 +2,9 @@
 
 namespace App\Console;
 
+use Carbon\Carbon;
+use App\Models\Reservation;
+use App\Console\Commands\TestCommand;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -13,7 +16,7 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        //
+        Commands\TestCommand::class,
     ];
 
     /**
@@ -25,6 +28,33 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         // $schedule->command('inspire')->hourly();
+
+         //$schedule->command('reservation:check-permitted-period')->daily();
+
+        $schedule->call(function () {
+
+
+
+            $reservations = Reservation::where("active", "=", 1)
+                ->where("receive_in", "=", null)
+                ->where("retrieved_in", "=", null)
+                ->where("created_at", "<", Carbon::now()->subHours(72))
+                ->get();
+
+
+
+            if ($reservations->count() > 0) {
+                foreach ($reservations as  $reservation) {
+
+                    $reservation->update(["active" => 0]);
+                    $reservation->book()->update(['active' => 1]);
+                }
+            }
+
+
+
+            return true;
+        })->everyMinute();
     }
 
     /**

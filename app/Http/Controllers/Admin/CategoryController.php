@@ -95,8 +95,11 @@ class CategoryController extends Controller
      */
     public function update(CategoryRequest $request, Category $category)
     {
+
+
         try {
             $category->update($request->validated());
+            $category->books()->update(['parent_active' => $request->active]);
 
             return redirect(route("admin.categories.index"))->with(['success' => __("admin.success create")]);
         } catch (\Exception $ex) {
@@ -114,6 +117,8 @@ class CategoryController extends Controller
     public function destroy(Category $category)
     {
         try {
+
+            $category->books()->update(['parent_active' => 1]);
             $category->delete();
 
             return redirect(route("admin.categories.index"))->with(['success' => __("admin.success delete")]);

@@ -136,6 +136,9 @@ return [
     "created_at" => "انشأ في",
     "updated_at" => "تم التحديث ",
     "profile" => "الملف الشخصي",
+    "response_by" => "تم الرد بواسطه",
+
+    "parent_active" => "حاله القسم",
 
 
 

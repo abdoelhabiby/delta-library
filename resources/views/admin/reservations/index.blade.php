@@ -77,31 +77,32 @@
                                                                 <td>{{ $reservation->book->name }}</td>
                                                                 <td>
 
-                                                                        @if ($reservation->receive_in)
-                                                                            {{ $reservation->receive_in }}
-                                                                        @elseif(admin()->hasPermissionTo('edit_reservations'))
-                                                                            <form method="post"
-                                                                                action="{{ route('admin.reservations.receive_in', $reservation->id) }}">
-                                                                                @csrf
-                                                                                <button type="submit"
-                                                                                    class="btn btn-info">{{ __('admin.create') }}</button>
-                                                                            </form>
-                                                                        @endif
+                                                                    @if ($reservation->receive_in)
+                                                                        {{ $reservation->receive_in }}
+                                                                    @elseif(admin()->hasPermissionTo('edit_reservations'))
+                                                                        <form method="post"
+                                                                            action="{{ route('admin.reservations.receive_in', $reservation->id) }}">
+                                                                            @csrf
+                                                                            <button type="submit"
+                                                                                class="btn btn-info">{{ __('admin.create') }}</button>
+                                                                        </form>
+                                                                    @endif
 
                                                                 </td>
                                                                 <td>
 
 
-                                                                        @if ($reservation->retrieved_in)
-                                                                            {{ $reservation->retrieved_in }}
-                                                                        @elseif($reservation->receive_in && admin()->hasPermissionTo('edit_reservations'))
-                                                                            <form method="post"
-                                                                                action="{{ route('admin.reservations.retrieved_in', $reservation->id) }}">
-                                                                                @csrf
-                                                                                <button type="submit"
-                                                                                    class="btn btn-info">{{ __('admin.create') }}</button>
-                                                                            </form>
-                                                                        @endif
+                                                                    @if ($reservation->retrieved_in)
+                                                                        {{ $reservation->retrieved_in }}
+                                                                    @elseif($reservation->receive_in &&
+                                                                        admin()->hasPermissionTo('edit_reservations'))
+                                                                        <form method="post"
+                                                                            action="{{ route('admin.reservations.retrieved_in', $reservation->id) }}">
+                                                                            @csrf
+                                                                            <button type="submit"
+                                                                                class="btn btn-info">{{ __('admin.create') }}</button>
+                                                                        </form>
+                                                                    @endif
                                                                 </td>
 
                                                                 <td>
@@ -110,15 +111,32 @@
                                                                 <td>
                                                                     <div class="btn-group" role="group"
                                                                         aria-label="Basic example">
+                                                                        @if (admin()->hasPermissionTo('delete_reservations'))
 
+                                                                            @if ($reservation->retrieved_in == null && $reservation->receive_in == null && $reservation->active == 0)
+                                                                                <button type="button" id="button_delete"
+                                                                                    data-action="{{ route('admin.reservations.destroy', $reservation->id) }}"
+                                                                                    data-name="{{ $reservation->name }}"
+                                                                                    class="btn btn-outline-danger btn-min-width box-shadow-3 mr-1 mb-1">
+                                                                                    {{ __('admin.delete') }}
+                                                                                </button>
+                                                                            @elseif ($reservation->retrieved_in == null && $reservation->receive_in == null && $reservation->active)
+                                                                                <button type="button" id="button_delete"
+                                                                                    data-action="{{ route('admin.reservations.destroy', $reservation->id) }}"
+                                                                                    data-name="{{ $reservation->name }}"
+                                                                                    class="btn btn-outline-danger btn-min-width box-shadow-3 mr-1 mb-1">
+                                                                                    {{ __('admin.delete') }}
+                                                                                </button>
 
-                                                                        @if (admin()->hasPermissionTo('delete_reservations') && $reservation->retrieved_in)
-                                                                            <button type="button" id="button_delete"
-                                                                                data-action="{{ route('admin.reservations.destroy', $reservation->id) }}"
-                                                                                data-name="{{ $reservation->name }}"
-                                                                                class="btn btn-outline-danger btn-min-width box-shadow-3 mr-1 mb-1">
-                                                                                {{ __('admin.delete') }}
-                                                                            </button>
+                                                                            @elseif ( $reservation->retrieved_in)
+                                                                                <button type="button" id="button_delete"
+                                                                                    data-action="{{ route('admin.reservations.destroy', $reservation->id) }}"
+                                                                                    data-name="{{ $reservation->name }}"
+                                                                                    class="btn btn-outline-danger btn-min-width box-shadow-3 mr-1 mb-1">
+                                                                                    {{ __('admin.delete') }}
+                                                                                </button>
+
+                                                                            @endif
 
                                                                         @endif
 
