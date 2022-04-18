@@ -2,7 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 
-define("PAGINATE_COUNT", 10);
+if(!defined('PAGINATE_COUNT')){
+    define("PAGINATE_COUNT", 10);
+
+}
 
 Route::group(["namespace" => "Admin"], function () {
 
